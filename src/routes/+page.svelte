@@ -3,10 +3,14 @@
     import { Envelope, ArrowTopRightOnSquare } from "@steeze-ui/heroicons";
 </script>
 
+<head>
+    <title>Alex | MCC Stats Discord Bot</title>
+    <meta name="description" content="Alex is an MCC stats bot for Discord that allows you to view information about upcoming events, the team's and stats from previous events and the Hall of Fame!">
+</head>
 <main class="from-red-900 to-red-500 bg-gradient-to-b h-screen text-slate-100 flex justify-center items-center">
     <div class="flex flex-col justify-center items-center">
-        <div class="pb-6">
-            <a href="https://pin.it/2GOsBu8"><img class="inline-block h-32 w-40 rounded-md shadow-xl" src="/images/pfp.jpg" alt=""></a>
+        <div class="">
+            <a href="https://pin.it/2GOsBu8"><img class="inline-block h-32 w-40 rounded-md" src="/favicon.png" alt=""></a>
         </div>
         <div class="overflow-hidden bg-discord-light shadow-2xl sm:rounded-lg max-w-screen-md">
             <div class="px-4 py-8 sm:px-6">
