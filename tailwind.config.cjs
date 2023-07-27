@@ -4,7 +4,8 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'discord-light': '#424549'
+                'bg-dark': '#424549',
+                'bg-light': '#53575c'
             },
         },
     },

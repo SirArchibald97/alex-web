@@ -13,14 +13,33 @@
             <div>
                 <a href="https://pin.it/2GOsBu8"><img class="inline-block h-32 w-40 rounded-md" src="/favicon.png" alt=""></a>
             </div>
-            <div class="overflow-hidden bg-discord-light shadow-2xl max-w-xs sm:max-w-3xl rounded-lg">
+            <div class="overflow-hidden bg-bg-dark shadow-2xl max-w-xs sm:max-w-4xl rounded-lg">
                 <div class="px-4 py-8 sm:px-6">
-                    <h3 class="text-3xl font-bold leading-6">👋 Hi, I'm Alex!</h3>
+                    <h3 class="text-3xl text-center font-bold leading-6">👋<span class="ml-3">Hi, I'm Alex!</span></h3>
                 </div>
                 <div class="border-t border-gray-200 px-4 py-5 sm:px-6 text-xl">
 
                     <!-- information -->
-                    <p>I am a stats bot for MCC where you can see information on the MCC event, it's game and it's teams!</p>
+                    <p class="text-center mb-5">I am a stats bot for MCC and MCC Island that provides a bunch of fun and useful features!</p>
+                    <div class="grid grid-cols-1 gap-y-3 sm:grid-cols-2 my-5">
+                        <div class="sm:mx-5 bg-bg-light shadow-2xl rounded-lg p-5
+                                    hover:from-amber-500 hover:to-yellow-400 hover:bg-gradient-to-b hover:-translate-x-1 hover:-translate-y-1 duration-700">
+                            <h3 class="text-center text-3xl font-bold pb-3 drop-shadow-xl">MCC</h3>
+                            <p class="mb-5">🤝<span class="ml-3">View the teams and livestreams of the upcoming events!</span></p>
+                            <p class="mb-5">📊<span class="ml-3">Look at the team and individual scores from previous events!</span></p>
+                            <p class="mb-5">🏆<span class="ml-3">Search through world records in the Hall of Fame!</span></p>
+                        </div>
+
+                        <div class="sm:mx-5 bg-bg-light shadow-2xl rounded-lg p-5 grow-0
+                                   hover:from-green-600 hover:to-cyan-400 hover:bg-gradient-to-b hover:-translate-x-1 hover:-translate-y-1 duration-700">
+                            <h3 class="text-center text-3xl font-bold pb-3 drop-shadow-xl">MCC Island</h3>
+                            <p class="mb-5">🏅<span class="ml-3">Find out how to achieve all the hidden badges!</span><span class="text-sm ml-1 align-middle px-1 bg-green-500 rounded-md">New!</span></p>
+                            <p class="mb-5">👚<span class="ml-3">Missing a cosmetic? Check out where you can find it!</span><span class="text-sm ml-1 align-middle px-1 bg-green-500 rounded-md">New!</span></p>
+                            <p class="mb-5">🎮<span class="ml-3">View and track player statistics across all gamemodes!</span><span class="text-sm ml-1 align-middle px-1 bg-yellow-500 rounded-md">Coming Soon!</span></p>
+                        </div>
+                    </div>
+
+                    <!--
                     <div class="pt-4 pl-2 flex flex-col">
                         <div class="flex flex-row pb-2">
                             <p>🤝</p>
@@ -35,6 +54,7 @@
                             <p class="ml-3">See the placements from the previous event and coin totals!</p>
                         </div>
                     </div>
+                    -->
                     
                     <!-- buttons -->
                     <div class="flex flex-col sm:flex-row items-center sm:justify-center pt-4 pb-2">
