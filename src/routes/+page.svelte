@@ -20,7 +20,7 @@
                 <div class="border-t border-gray-200 px-4 py-5 sm:px-6 text-xl">
 
                     <!-- information -->
-                    <p class="text-center mb-5">I am a stats bot for MCC and MCC Island that provides a bunch of fun and useful features!</p>
+                    <p class="text-center mb-5">I am a Discord bot for MCC and MCC Island that provides a bunch of fun and useful features!</p>
                     <div class="grid grid-cols-1 gap-y-3 sm:grid-cols-2 my-5">
                         <div class="sm:mx-5 bg-bg-light shadow-2xl rounded-lg p-5
                                     hover:from-amber-500 hover:to-yellow-400 hover:bg-gradient-to-b hover:-translate-x-1 hover:-translate-y-1 duration-700">
