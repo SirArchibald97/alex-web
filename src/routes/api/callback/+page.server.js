@@ -17,7 +17,7 @@ export async function load({ url, cookies }) {
             client_secret: CLIENT_SECRET,
             grant_type: 'authorization_code',
             code: code,
-            redirect_uri: `https://localhost:5173/api/callback`,
+            redirect_uri: `https://api.sirarchibald.dev/api/callback`,
             scope: 'identify guilds',
         }),
     });
