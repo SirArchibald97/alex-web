@@ -31,7 +31,7 @@ export async function load({ url, cookies }) {
     });
     const user_data = await user.json();
 
-    cookies.set("access_token", access_token, { path: "/", maxAge: new Date(json.expires_in * 1000 + Date.now()).getTime() });
-    cookies.set("user", JSON.stringify(user_data), { path: "/", maxAge: new Date(json.expires_in * 1000 + Date.now()).getTime() });
+    cookies.set("access_token", access_token, { path: "/" });
+    cookies.set("user", JSON.stringify(user_data), { path: "/" });
     throw redirect(300, "/dashboard");
 }
