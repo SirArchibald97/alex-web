@@ -1,9 +1,10 @@
-import { redirect } from '@sveltejs/kit';
 import { BOT_TOKEN } from '$env/static/private';
+import { redirect } from '@sveltejs/kit';
 
 export async function load({ cookies }) {
     const access_token = cookies.get("access_token");
     if (!access_token) throw redirect(301, "/api/auth");
+    if (access_token === undefined) throw redirect(301, "/api/auth");
 
     const user_data = cookies.get("user");
     if (!user_data) throw redirect(301, "/api/auth");
