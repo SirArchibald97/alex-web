@@ -9,20 +9,12 @@ export async function load({ cookies }) {
     const user_data = cookies.get("user");
     if (!user_data) throw redirect(301, "/api/auth");
 
-    const user_guilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
-        headers: {
-            Authorization: `Bearer ${access_token}`
-        }
-    });
+    const user_guilds = await fetch(`https://discord.com/api/users/@me/guilds`, { headers: { Authorization: `Bearer ${access_token}` } });
     const guild_data = await user_guilds.json();
     //@ts-ignore
     const admin_guilds = guild_data.filter(guild => (guild.permissions & 0x8) === 0x8);
 
-    const bot_guilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
-        headers: {
-            Authorization: `Bot ${BOT_TOKEN}`
-        }
-    });
+    const bot_guilds = await fetch(`https://discord.com/api/users/@me/guilds`, { headers: { Authorization: `Bot ${BOT_TOKEN}` } });
     const bot_guild_data = await bot_guilds.json();
 
     //@ts-ignore

@@ -17,16 +17,17 @@ export async function load({ params, cookies }) {
     const guild = await guild_res.json();
 
     // If not in guild, throw 404
-    if (!permissions) throw error(404, "Guild not found.");
+    if (!permissions) throw error(404, "Guild not found!");
     // If not admin, throw 403
-    if ((permissions & 0x8) !== 0x8) throw error(403, "You do not have permission to view this page.");
+    if ((permissions & 0x8) !== 0x8) throw error(403, "You do not have permission to view this page!");
 
     const channels_res = await fetch(`https://discord.com/api/guilds/${params.server_id}/channels`, { headers: { Authorization: `Bot ${BOT_TOKEN}` } });
     const channels = await channels_res.json();
 
     const alex_guilds_res = await fetch(`https://api.sirarchibald.dev/alex/guilds/${params.server_id}`, { headers: { auth: API_KEY, "Content-Type": "application/json" } });
     const alex_guild = await alex_guilds_res.json();
-    if (alex_guild.code === 404) throw error(404, "Guild not found.");
+    if (alex_guild.code === 404) throw error(404, "Guild not found!");
+    if (alex_guild.code === 429) throw error(429, "You are being ratelimited!");
 
     return {
         user: JSON.parse(user_data),
@@ -39,13 +40,16 @@ export async function load({ params, cookies }) {
 export const actions = {
     savebeechanges: async ({ params, request }) => {
         const data = await request.formData();
-        const body = { toggled: data.get("toggled"), channel: data.get("channel").toString(), role: data.get("role").toString() };
 
-        const update_res = await fetch("https://api.sirarchibald.dev/alex/guilds/" + params.server_id + "/bee", {
-            method: "POST",
-            headers: { "auth": API_KEY, "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        });
+        const current = await fetch(`https://api.sirarchibald.dev/alex/guilds/${params.server_id}`, { headers: { auth: API_KEY, "Content-Type": "application/json" } });
+        const currentData = await current.json();
+
+        let newSettings = currentData.guild.settings;
+        newSettings.bee.toggled = data.get("toggled");
+        newSettings.bee.channel = data.get("channel");
+        newSettings.bee.role = data.get("role");
+
+        const update_res = await fetch(`https://api.sirarchibald.dev/alex/guilds/${params.server_id}`, { method: "POST", headers: { "auth": API_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ settings: newSettings }) });
         const update = await update_res.json();
 
         return update ? update : { success: false };
@@ -53,13 +57,16 @@ export const actions = {
 
     saveupdateschanges: async ({ params, request }) => {
         const data = await request.formData();
-        const body = { toggled: data.get("toggled"), channel: data.get("channel").toString(), role: data.get("role").toString() };
 
-        const update_res = await fetch("https://api.sirarchibald.dev/alex/guilds/" + params.server_id + "/updates", {
-            method: "POST",
-            headers: { "auth": API_KEY, "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        });
+        const current = await fetch(`https://api.sirarchibald.dev/alex/guilds/${params.server_id}`, { headers: { auth: API_KEY, "Content-Type": "application/json" } });
+        const currentData = await current.json();
+
+        let newSettings = currentData.guild.settings;
+        newSettings.updates.toggled = data.get("toggled");
+        newSettings.updates.channel = data.get("channel");
+        newSettings.updates.role = data.get("role");
+
+        const update_res = await fetch(`https://api.sirarchibald.dev/alex/guilds/${params.server_id}`, { method: "POST", headers: { "auth": API_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ settings: newSettings }) });
         const update = await update_res.json();
 
         return update ? update : { success: false };

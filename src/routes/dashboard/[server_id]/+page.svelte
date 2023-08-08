@@ -11,7 +11,6 @@
 
     const { bee, updates } = data.settings;
 
-    console.log(bee, updates)
     let toggles = { bee: bee.toggled, updates: updates.toggled };
     let selectedChannels = { bee: bee.channel, updates: updates.channel };
     let selectedRoles = { bee: bee.role, updates: updates.role };
@@ -42,7 +41,7 @@
             </div>
             {:else if form?.success === false}
             <div class="flex justify-center bg-red-500 text-slate-100 sm:rounded-md py-2 mb-3 shadow-lg">
-                <p>Something went wrong doing that!</p>
+                <p>{form?.error ? form?.error : "Something went wrong doing that!"}</p>
             </div>
             {/if}
 
@@ -65,7 +64,7 @@
                         <form method="POST">
                             <div>
                                 <p class="text-sm font-medium leading-6 text-slate-100 pb-3">Toggle setting</p>
-                                <Toggle bind:toggled={toggles.bee} data={JSON.stringify(data.settings.bee)} />
+                                <Toggle bind:toggled={toggles.bee} start_toggled={toggles.bee} />
                                 <input name="toggled" bind:value={toggles.bee} class="hidden" />
                             </div>
                             <div class="pt-3">
@@ -105,7 +104,7 @@
                         <form method="POST">
                             <div>
                                 <p class="text-sm font-medium leading-6 text-slate-100 pb-3">Toggle setting</p>
-                                <Toggle bind:toggled={toggles.updates} data={JSON.stringify(data.settings.updates)} />
+                                <Toggle bind:toggled={toggles.updates} start_toggled={toggles.updates} />
                                 <input name="toggled" bind:value={toggles.updates} class="hidden" />
                             </div>
                             <div class="pt-3">

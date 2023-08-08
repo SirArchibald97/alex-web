@@ -29,7 +29,11 @@
             </div>
         </nav>
           
-
+        {#if data.guilds_with_bot.length == 0 && data.guilds_without_bot.length == 0}
+        <div>
+            <p>You are in no guilds!</p>
+        </div>
+        {:else}
         <div class="grid grid-cols-1 sm:grid-cols-3 mx-auto max-w-5xl gap-10 my-10">
             {#each data.guilds_with_bot as guild}
             <div class="flex flex-col shadow-lg">
@@ -56,5 +60,6 @@
             </div>
             {/each}
         </div>
+        {/if}
     </body>
 </html>
