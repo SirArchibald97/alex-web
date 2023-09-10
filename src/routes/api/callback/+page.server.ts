@@ -1,10 +1,10 @@
 import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 
+/** @type {import('./$types').PageLoad} */
 export async function load({ url, cookies }) {
     const token_request_url = `https://discord.com/api/oauth2/token`;
-    //@ts-ignore
-    const code = url.searchParams.get("code").toString();
+    const code = url.searchParams.get("code");
 
     const response = await fetch(token_request_url, {
         method: "POST",
@@ -15,7 +15,7 @@ export async function load({ url, cookies }) {
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
             grant_type: 'authorization_code',
-            code: code,
+            code: code || "",
             redirect_uri: url.hostname === "localhost" ? "https://localhost:5173/api/callback" : "https://alex.sirarchibald.dev/api/callback",
             scope: 'identify guilds',
         }),
@@ -28,6 +28,7 @@ export async function load({ url, cookies }) {
 
     cookies.set("access_token", access_token, { path: "/" });
     cookies.set("user", JSON.stringify(user_data), { path: "/" });
+    console.log("Set cookies, redirecting to dashboard...");
 
     throw redirect(300, "/dashboard");
 }

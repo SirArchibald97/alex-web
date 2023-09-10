@@ -11,7 +11,7 @@
 </script>
 
 <div>
-    <button on:click={toggleToggle} type="button" class={`bg-${isToggled ? "green-500" : "gray-200"} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out`} role="switch" aria-checked="false">
+    <button on:click={toggleToggle} type="button" class={`bg-${isToggled ? "green-500" : "gray-400"} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out`} role="switch" aria-checked="false">
         <span class="sr-only">Use setting</span>
         <span class={`${isToggled ? "translate-x-5" : ""} pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}>
             <span class={`opacity-${isToggled ? "0" : "100"} duration-${isToggled ? "100" : "200"} ease-${isToggled ? "out" : "in"} absolute inset-0 flex h-full w-full items-center justify-center transition-opacity`} aria-hidden="true">

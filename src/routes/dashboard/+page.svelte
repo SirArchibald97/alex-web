@@ -1,6 +1,14 @@
 <script lang="js">
+	import { Cog } from "@steeze-ui/heroicons";
+	import { Icon } from "@steeze-ui/svelte-icon";
+
     export let data;
     const user_avatar = `https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.png`;
+
+    let isLoading = [];
+    function toggleLoading(index) {
+        isLoading[index] = !isLoading[index];
+    }
 </script>
 
 <html lang="" class="from-red-800 to-red-500 bg-gradient-to-b">
@@ -35,19 +43,25 @@
         </div>
         {:else}
         <div class="grid grid-cols-1 sm:grid-cols-3 mx-auto max-w-5xl gap-10 my-10">
-            {#each data.guilds_with_bot as guild}
+            {#each data.guilds_with_bot as guild, i}
             <div class="flex flex-col shadow-lg">
                 <div class="flex bg-zinc-700 rounded-lg p-3 mb-2">
                     <img class="h-16 w-16 rounded-lg" src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`} alt="Guild Logo">
                     <p class="text-slate-100 text-xl pl-3">{guild.name}</p>
                 </div>
-                <a href={`/dashboard/${guild.id}`} class="bg-red-600 p-2 rounded-lg text-center text-slate-100 hover:bg-red-700">
+                {#if isLoading[i]}
+                <a href={`/dashboard/${guild.id}`} class="bg-red-600 p-2 rounded-lg text-center text-slate-100 hover:bg-red-700 flex justify-center">
+                    <Icon src={Cog} theme="solid" class="w-6 h-6 animate-spin"/>
+                </a>
+                {:else}
+                <a on:click={() => { toggleLoading(i); }} href={`/dashboard/${guild.id}`} class="bg-red-600 p-2 rounded-lg text-center text-slate-100 hover:bg-red-700">
                     Manage
                 </a>
+                {/if}
             </div>
             {/each}
 
-            {#each data.guilds_without_bot as guild}
+            {#each data.guilds_without_bot as guild, i}
             <div class="flex flex-col shadow-lg">
                 <div class="flex bg-zinc-700 rounded-lg p-3 mb-2">
                     <img class="h-16 w-16 rounded-lg" src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`} alt="Guild Logo">
